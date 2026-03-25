@@ -4,14 +4,15 @@ import jakarta.persistence.*;
 import samuelvalentini.TipoEvento;
 
 import java.time.LocalDate;
+import java.util.UUID;
 
 @Entity
 @Table(name = "eventi")
 
 public class Evento {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
     @Column(name = "nome_evento")
     private String titolo;
     @Column(name = "data")
@@ -34,7 +35,7 @@ public class Evento {
     public Evento() {
     }
 
-    public long getId() {
+    public UUID getId() {
         return id;
     }
 
