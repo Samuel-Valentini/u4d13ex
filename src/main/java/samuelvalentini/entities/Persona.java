@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import samuelvalentini.enumeration.Sesso;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -26,6 +28,9 @@ public class Persona {
     @Column(name = "sesso", length = 30)
     @Enumerated(EnumType.STRING)
     private Sesso sesso;
+
+    @OneToMany(mappedBy = "persona")
+    private List<Partecipazione> partecipazioni = new ArrayList<>();
 
     public Persona(String nome, String cognome, String email, LocalDate dataDiNascita, Sesso sesso) {
         this.nome = nome;

@@ -14,17 +14,22 @@ public class Partecipazione {
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "id_partecipazione")
     private UUID idPartecipazione;
-    @Column(name = "id_persona", nullable = false, unique = true)
-    private UUID idPersona;
-    @Column(name = "id_evento", nullable = false, unique = true)
-    private UUID idEvento;
+
+    @ManyToOne
+    @JoinColumn(name = "id_persona", nullable = false, unique = true)
+    private Persona persona;
+
+    @ManyToOne
+    @JoinColumn(name = "id_evento", nullable = false, unique = true)
+    private Evento evento;
+
     @Column(name = "stato_partecipazione", length = 30, nullable = false)
     @Enumerated(EnumType.STRING)
     private StatoPartecipazione statoPartecipazione;
 
-    public Partecipazione(UUID idPersona, UUID idEvento, StatoPartecipazione statoPartecipazione) {
-        this.idPersona = idPersona;
-        this.idEvento = idEvento;
+    public Partecipazione(Persona persona, Evento evento, StatoPartecipazione statoPartecipazione) {
+        this.persona = persona;
+        this.evento = evento;
         this.statoPartecipazione = statoPartecipazione;
     }
 
@@ -35,20 +40,20 @@ public class Partecipazione {
         return idPartecipazione;
     }
 
-    public UUID getIdPersona() {
-        return idPersona;
+    public Persona getPersona() {
+        return persona;
     }
 
-    public void setIdPersona(UUID idPersona) {
-        this.idPersona = idPersona;
+    public void setPersona(Persona persona) {
+        this.persona = persona;
     }
 
-    public UUID getIdEvento() {
-        return idEvento;
+    public Evento getEvento() {
+        return evento;
     }
 
-    public void setIdEvento(UUID idEvento) {
-        this.idEvento = idEvento;
+    public void setEvento(Evento evento) {
+        this.evento = evento;
     }
 
     public StatoPartecipazione getStatoPartecipazione() {

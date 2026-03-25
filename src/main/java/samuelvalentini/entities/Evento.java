@@ -26,12 +26,14 @@ public class Evento {
     private TipoEvento tipoEvento;
     @Column(name = "numero_max_partecipanti", nullable = false)
     private int numeroMassimoPartecipanti;
-    @Column(name = "id_location", nullable = true)
-    private UUID idLocation;
     @Column(name = "ora_inizio", nullable = true)
     private LocalTime oraInizio;
     @Column(name = "ora_fine_prevista", nullable = true)
     private LocalTime oraFinePrevista;
+
+    @OneToOne
+    @JoinColumn(name = "id_location", nullable = true)
+    private Location location;
 
     public Evento(String titolo, LocalDate dataEvento, String descrizione, TipoEvento tipoEvento, int numeroMassimoPartecipanti) {
         if (numeroMassimoPartecipanti < 0) {
@@ -44,7 +46,7 @@ public class Evento {
         this.numeroMassimoPartecipanti = numeroMassimoPartecipanti;
     }
 
-    public Evento(String titolo, LocalDate dataEvento, String descrizione, TipoEvento tipoEvento, int numeroMassimoPartecipanti, UUID idLocation, LocalTime oraInizio, LocalTime oraFinePrevista) {
+    public Evento(String titolo, LocalDate dataEvento, String descrizione, TipoEvento tipoEvento, int numeroMassimoPartecipanti, Location location, LocalTime oraInizio, LocalTime oraFinePrevista) {
         if (numeroMassimoPartecipanti < 0) {
             throw new IllegalArgumentException("il numero massimo dei partecipanti deve essere positivo");
         }
@@ -53,9 +55,9 @@ public class Evento {
         this.descrizione = descrizione;
         this.tipoEvento = tipoEvento;
         this.numeroMassimoPartecipanti = numeroMassimoPartecipanti;
-        this.idLocation = idLocation;
         this.oraInizio = oraInizio;
         this.oraFinePrevista = oraFinePrevista;
+        this.location = location;
     }
 
     protected Evento() {
@@ -108,15 +110,42 @@ public class Evento {
         this.numeroMassimoPartecipanti = numeroMassimoPartecipanti;
     }
 
+    public LocalTime getOraInizio() {
+        return oraInizio;
+    }
+
+    public void setOraInizio(LocalTime oraInizio) {
+        this.oraInizio = oraInizio;
+    }
+
+    public LocalTime getOraFinePrevista() {
+        return oraFinePrevista;
+    }
+
+    public void setOraFinePrevista(LocalTime oraFinePrevista) {
+        this.oraFinePrevista = oraFinePrevista;
+    }
+
+    public Location getLocation() {
+        return location;
+    }
+
+    public void setLocation(Location location) {
+        this.location = location;
+    }
+
     @Override
     public String toString() {
         return "Evento{" +
-                "id=" + idEvento +
+                "idEvento=" + idEvento +
                 ", titolo='" + titolo + '\'' +
                 ", dataEvento=" + dataEvento +
                 ", descrizione='" + descrizione + '\'' +
                 ", tipoEvento=" + tipoEvento +
                 ", numeroMassimoPartecipanti=" + numeroMassimoPartecipanti +
+                ", oraInizio=" + oraInizio +
+                ", oraFinePrevista=" + oraFinePrevista +
+                ", location=" + location +
                 '}';
     }
 }
