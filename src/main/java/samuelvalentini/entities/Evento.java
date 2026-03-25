@@ -31,7 +31,7 @@ public class Evento {
     @Column(name = "ora_fine_prevista", nullable = true)
     private LocalTime oraFinePrevista;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "id_location", nullable = true)
     private Location location;
 

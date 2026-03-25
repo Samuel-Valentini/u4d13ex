@@ -37,13 +37,13 @@ public class LocationDAO {
 
     }
 
-//    public void deleteById(UUID idEvento) {
-//        Evento found = this.getById(idEvento);
-//        EntityTransaction transaction = this.entityManager.getTransaction();
-//        transaction.begin();
-//        entityManager.remove(found);
-//        transaction.commit();
-//        System.out.println("L'evento " + found.getTitolo() + " è stato eliminato con successo!");
-//
-//    }
+    public void deleteById(UUID idLocation) {
+        Location found = this.getById(idLocation);
+        EntityTransaction transaction = this.entityManager.getTransaction();
+        transaction.begin();
+        entityManager.remove(found);
+        transaction.commit();
+        System.out.println("La location " + found.getNomeLocation() + " è stata eliminata con successo!");
+
+    }
 }
