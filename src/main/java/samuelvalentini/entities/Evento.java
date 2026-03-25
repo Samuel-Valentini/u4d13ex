@@ -46,6 +46,18 @@ public class Evento {
         this.numeroMassimoPartecipanti = numeroMassimoPartecipanti;
     }
 
+    public Evento(String titolo, LocalDate dataEvento, String descrizione, TipoEvento tipoEvento, int numeroMassimoPartecipanti, Location location) {
+        if (numeroMassimoPartecipanti < 0) {
+            throw new IllegalArgumentException("il numero massimo dei partecipanti deve essere positivo");
+        }
+        this.titolo = titolo;
+        this.dataEvento = dataEvento;
+        this.descrizione = descrizione;
+        this.tipoEvento = tipoEvento;
+        this.numeroMassimoPartecipanti = numeroMassimoPartecipanti;
+        this.location = location;
+    }
+
     public Evento(String titolo, LocalDate dataEvento, String descrizione, TipoEvento tipoEvento, int numeroMassimoPartecipanti, Location location, LocalTime oraInizio, LocalTime oraFinePrevista) {
         if (numeroMassimoPartecipanti < 0) {
             throw new IllegalArgumentException("il numero massimo dei partecipanti deve essere positivo");

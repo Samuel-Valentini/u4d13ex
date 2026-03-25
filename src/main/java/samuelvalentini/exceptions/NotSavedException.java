@@ -1,9 +1,7 @@
 package samuelvalentini.exceptions;
 
-import samuelvalentini.entities.Evento;
-
 public class NotSavedException extends RuntimeException {
-    public NotSavedException(Evento newEvento) {
-        super("L'evento " + newEvento + " non è stato salvato.");
+    public NotSavedException(Object obj) {
+        super("L'oggetto " + obj + " non è stato salvato.");
     }
 }

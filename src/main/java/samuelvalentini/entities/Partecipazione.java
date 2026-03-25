@@ -7,7 +7,14 @@ import samuelvalentini.enumeration.StatoPartecipazione;
 import java.util.UUID;
 
 @Entity
-@Table(name = "partecipazioni")
+
+@Table(
+        name = "partecipazioni",
+        uniqueConstraints = {
+                @UniqueConstraint(columnNames = {"id_persona", "id_evento"})
+        }
+)
+
 
 public class Partecipazione {
     @Id
@@ -16,11 +23,11 @@ public class Partecipazione {
     private UUID idPartecipazione;
 
     @ManyToOne
-    @JoinColumn(name = "id_persona", nullable = false, unique = true)
+    @JoinColumn(name = "id_persona", nullable = false)
     private Persona persona;
 
     @ManyToOne
-    @JoinColumn(name = "id_evento", nullable = false, unique = true)
+    @JoinColumn(name = "id_evento", nullable = false)
     private Evento evento;
 
     @Column(name = "stato_partecipazione", length = 30, nullable = false)
@@ -62,5 +69,15 @@ public class Partecipazione {
 
     public void setStatoPartecipazione(StatoPartecipazione statoPartecipazione) {
         this.statoPartecipazione = statoPartecipazione;
+    }
+
+    @Override
+    public String toString() {
+        return "Partecipazione{" +
+                "idPartecipazione=" + idPartecipazione +
+                ", persona=" + persona +
+                ", evento=" + evento +
+                ", statoPartecipazione=" + statoPartecipazione +
+                '}';
     }
 }

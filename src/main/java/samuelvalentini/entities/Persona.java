@@ -44,6 +44,22 @@ public class Persona {
 
     }
 
+    public List<Partecipazione> getPartecipazioni() {
+        return partecipazioni;
+    }
+
+    @Override
+    public String toString() {
+        return "Persona{" +
+                "idPersona=" + idPersona +
+                ", nome='" + nome + '\'' +
+                ", cognome='" + cognome + '\'' +
+                ", email='" + email + '\'' +
+                ", dataDiNascita=" + dataDiNascita +
+                ", sesso=" + sesso +
+                '}';
+    }
+
     public UUID getIdPersona() {
         return idPersona;
     }
