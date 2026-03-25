@@ -1,4 +1,4 @@
-package samuelvalentini;
+package samuelvalentini.enumeration;
 
 public enum TipoEvento {
     PUBBLICO,

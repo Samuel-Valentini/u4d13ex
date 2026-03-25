@@ -5,6 +5,7 @@ import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 import samuelvalentini.dao.EventoDAO;
 import samuelvalentini.entities.Evento;
+import samuelvalentini.enumeration.TipoEvento;
 
 import java.time.LocalDate;
 

@@ -1,9 +1,10 @@
 package samuelvalentini.entities;
 
 import jakarta.persistence.*;
-import samuelvalentini.TipoEvento;
+import samuelvalentini.enumeration.TipoEvento;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.UUID;
 
 @Entity
@@ -12,17 +13,25 @@ import java.util.UUID;
 public class Evento {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID id;
-    @Column(name = "nome_evento")
+    @Column(name = "id_evento")
+    private UUID idEvento;
+    @Column(name = "nome_evento", nullable = false)
     private String titolo;
-    @Column(name = "data")
+    @Column(name = "data_evento", nullable = false)
     private LocalDate dataEvento;
+    @Column(name = "descrizione_evento", nullable = false)
     private String descrizione;
-    @Column(name = "tipo", length = 30)
+    @Column(name = "tipo_evento", length = 30, nullable = false)
     @Enumerated(EnumType.STRING)
     private TipoEvento tipoEvento;
-    @Column(name = "numero_max_partecipanti")
+    @Column(name = "numero_max_partecipanti", nullable = false)
     private int numeroMassimoPartecipanti;
+    @Column(name = "id_location", nullable = true)
+    private UUID idLocation;
+    @Column(name = "ora_inizio", nullable = true)
+    private LocalTime oraInizio;
+    @Column(name = "ora_fine_prevista", nullable = true)
+    private LocalTime oraFinePrevista;
 
     public Evento(String titolo, LocalDate dataEvento, String descrizione, TipoEvento tipoEvento, int numeroMassimoPartecipanti) {
         this.titolo = titolo;
@@ -32,11 +41,22 @@ public class Evento {
         this.numeroMassimoPartecipanti = numeroMassimoPartecipanti;
     }
 
-    public Evento() {
+    public Evento(String titolo, LocalDate dataEvento, String descrizione, TipoEvento tipoEvento, int numeroMassimoPartecipanti, UUID idLocation, LocalTime oraInizio, LocalTime oraFinePrevista) {
+        this.titolo = titolo;
+        this.dataEvento = dataEvento;
+        this.descrizione = descrizione;
+        this.tipoEvento = tipoEvento;
+        this.numeroMassimoPartecipanti = numeroMassimoPartecipanti;
+        this.idLocation = idLocation;
+        this.oraInizio = oraInizio;
+        this.oraFinePrevista = oraFinePrevista;
+    }
+
+    protected Evento() {
     }
 
     public UUID getId() {
-        return id;
+        return idEvento;
     }
 
     public String getTitolo() {
@@ -82,7 +102,7 @@ public class Evento {
     @Override
     public String toString() {
         return "Evento{" +
-                "id=" + id +
+                "id=" + idEvento +
                 ", titolo='" + titolo + '\'' +
                 ", dataEvento=" + dataEvento +
                 ", descrizione='" + descrizione + '\'' +
